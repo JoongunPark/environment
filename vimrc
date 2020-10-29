@@ -1,5 +1,6 @@
 set tags+=/home/un/Project/cs492-final-project/tags
-
+set tags+=/home/sgx2/Exclave/linux-sgx-2.1/tags
+set tags+=/home/sgx2/Exclave/linux-sgx-driver-2/tags
 set paste " 붙여넣기
 set hlsearch " 검색어 하이라이팅
 set nu " 줄번호
@@ -45,3 +46,9 @@ colorscheme jellybeans
 set backupdir=~/.vim/undo-history
 set directory=~/.vim/undo-history
 
+if &term =~ '256color'
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
+endif
