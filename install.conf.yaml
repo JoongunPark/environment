@@ -9,7 +9,7 @@
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
     ~/.vimrc: vimrc
-    ~/.vim/colors/jellybean.vim: jellybeans.vim 
+    ~/.vim/colors/jellybeans.vim: jellybeans.vim 
     ~/.bash_profile: bash_profile
     ~/.tmux.conf: tmux.conf
 
