@@ -1,3 +1,8 @@
+set rtp+=~/.fzf
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/fzf.vim'
+call plug#end()
+let g:fzf_preview_window = []
 set tags+=/home/un/Project/cs492-final-project/tags
 set tags+=/home/sgx2/Exclave/linux-sgx-2.1/tags
 set tags+=/home/sgx2/Exclave/linux-sgx-driver-2/tags
