@@ -14,6 +14,7 @@ prompt_style
 
 # Tmux default 256 color
 alias tmux='tmux -2'
+alias ls='ls -h --color --group-directories-first' 
 
 export FZF_DEFAULT_OPTS='
 	--color fg:188,bg:233,hl:103,fg+:222,bg+:234,hl+:104
