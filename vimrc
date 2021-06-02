@@ -12,8 +12,9 @@ endif
 call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'tpope/vim-fugitive'
 	Plug 'edkolev/promptline.vim'
+	Plug 'edkolev/tmuxline.vim'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " cscope
