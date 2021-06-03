@@ -45,6 +45,7 @@ colorscheme jellybeans
 
 set backupdir=~/.vim/undo-history
 set directory=~/.vim/undo-history
+set paste 
 
 if &term =~ '256color'
   " disable Background Color Erase (BCE) so that color schemes
