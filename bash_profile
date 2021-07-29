@@ -16,6 +16,7 @@ alias ls='ls -h --color --group-directories-first'
 
 alias sgx1='ssh -p 44180 sgx1@143.248.188.173'
 alias sgx2='ssh sgx2@143.248.188.206'
+alias sgx3='ssh sgx3@143.248.188.218'
 alias cluster='ssh jupark@cluster.kaist.ac.kr'
 
 #-------------------------------------------------------------------------------
