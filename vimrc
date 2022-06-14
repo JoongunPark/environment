@@ -114,7 +114,6 @@ set cindent " C언어 자동 들여쓰기
 set bs=eol,start,indent
 set history=256
 set laststatus=2 " 상태바 표시 항상
-set shiftwidth=4 " 자동 들여쓰기 너비 설정
 set showmatch " 일치하는 괄호 하이라이팅
 set smartcase " 검색시 대소문자 구별
 set smarttab
@@ -126,6 +125,8 @@ set incsearch
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 set paste " 붙여넣기
 set mouse=a " 붙여넣기
+
+set cindent shiftwidth=4 expandtab smarttab
 
 " 마지막으로 수정된 곳에 커서를 위치함
 au BufReadPost *
