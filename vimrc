@@ -26,6 +26,7 @@ set tags+=/home/un/Project/cs492-final-project/tags
 set tags+=/home/sgx2/Exclave/linux-sgx-2.1/tags
 set tags+=/home/sgx2/Exclave/linux-sgx-driver-2/tags
 set tags+=/home/jupark/decoupled_at_zsim/tags
+set tags+=/home/jupark/gem5-cxl/tags
 
 nmap <silent> <F12> :TagbarToggle<cr>
 
@@ -35,11 +36,18 @@ nmap <silent> <F12> :TagbarToggle<cr>
 if has("cscope")
     set csto=0
     "cs add cscope.out
-    if $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    else
+"    if $CSCOPE_DB != ""
+"        cs add $CSCOPE_DB
+"    else
+"        cs add /home/jupark/decoupled_at_zsim/cscope.out
+"    endif
+	if filereadable("/home/jupark/decoupled_at_zsim/cscope.out")
         cs add /home/jupark/decoupled_at_zsim/cscope.out
-    endif
+	endif
+
+	if filereadable("/home/jupark/gem5-cxl/cscope.out")
+        cs add /home/jupark/gem5-cxl/cscope.out
+	endif
     set cscopeverbose
 
     " cscope/vim key mappings
