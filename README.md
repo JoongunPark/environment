@@ -1,4 +1,5 @@
 # environment
+git clone --recurse-submodules git@github.com:JoongunPark/environment.git
 
 # For tmux settings
 1) In vim
