@@ -1,11 +1,11 @@
 "-------------------------------------------------------------------------------
-" Plugins 
+" Plugins
 "-------------------------------------------------------------------------------
-if empty(glob('~/.vim/autoload/plug.vim'))                              
-   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs             
+if empty(glob('~/.vim/autoload/plug.vim'))
+   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-   au VimEnter * PlugInstall --sync | source $MYVIMRC                   
-endif     
+   au VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin('~/.vim/plugged')
 	" Airlines
@@ -15,19 +15,18 @@ call plug#begin('~/.vim/plugged')
 	Plug 'edkolev/tmuxline.vim'
 	" Git in Vim
     Plug 'tpope/vim-fugitive'
-	" Tag 
+	" Tag
 	Plug 'majutsushi/tagbar'
+    Plug 'ntpeters/vim-better-whitespace'
+	" Copilot
+    Plug 'github/copilot.vim'
 call plug#end()
 
 "-------------------------------------------------------------------------------
-" Tags 
+" Tags
 "-------------------------------------------------------------------------------
-set tags+=/home/un/Project/cs492-final-project/tags
-set tags+=/home/sgx2/Exclave/linux-sgx-2.1/tags
-set tags+=/home/sgx2/Exclave/linux-sgx-driver-2/tags
-set tags+=/home/jupark/decoupled_at_zsim/tags
-set tags+=/home/jupark/gem5-cxl/tags
-
+set tags+=/home/un-gpu/Project/astra-sim/tags
+set tags+=/home/un-gpu/Project/tacos/tags
 nmap <silent> <F12> :TagbarToggle<cr>
 
 "-------------------------------------------------------------------------------
@@ -41,13 +40,16 @@ if has("cscope")
 "    else
 "        cs add /home/jupark/decoupled_at_zsim/cscope.out
 "    endif
-	if filereadable("/home/jupark/decoupled_at_zsim/cscope.out")
-        cs add /home/jupark/decoupled_at_zsim/cscope.out
+	if filereadable("/home/un-gpu/Project/astra-sim/cscope.out")
+        cs add /home/un-gpu/Project/astra-sim/cscope.out
 	endif
-
-	if filereadable("/home/jupark/gem5-cxl/cscope.out")
-        cs add /home/jupark/gem5-cxl/cscope.out
-	endif
+"	if filereadable("/home/jupark/decoupled_at_zsim/cscope.out")
+"        cs add /home/jupark/decoupled_at_zsim/cscope.out
+"	endif
+"
+"	if filereadable("/home/jupark/gem5-cxl/cscope.out")
+"        cs add /home/jupark/gem5-cxl/cscope.out
+"	endif
     set cscopeverbose
 
     " cscope/vim key mappings
@@ -97,9 +99,23 @@ if has("cscope")
 endif
 
 "-------------------------------------------------------------------------------
-" vim settings 
+" Copilot settings
+"-------------------------------------------------------------------------------
+let g:copilot_enabled = 0
+"augroup copilot_setup
+"  autocmd!
+"  autocmd VimEnter * :Copilot setup
+"augroup END
+"
+"imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+"let g:copilot_no_tab_map = v:true
+
+"-------------------------------------------------------------------------------
+" vim settings
 "-------------------------------------------------------------------------------
 let g:airline_theme='jellybeans'
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
 set hlsearch " 검색어 하이라이팅
 set nu " 줄번호
 set autoindent " 자동 들여쓰기
@@ -146,11 +162,14 @@ colorscheme jellybeans
 
 set backupdir=~/.vim/undo-history
 set directory=~/.vim/undo-history
-set paste 
+"set paste
 
-if &term =~ '256color'
-  " disable Background Color Erase (BCE) so that color schemes
-  " render properly when inside 256-color tmux and GNU screen.
-  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-  set t_ut=
-endif
+" This makes default vim works with color scheme.
+set t_Co=256
+
+"if &term =~ '256color'
+"  " disable Background Color Erase (BCE) so that color schemes
+"  " render properly when inside 256-color tmux and GNU screen.
+"  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+"  set t_ut=
+"endif
