@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
 	" Airlines
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    Plug 'itchyny/lightline.vim'
 	Plug 'edkolev/promptline.vim'
 	Plug 'edkolev/tmuxline.vim'
 	" Git in Vim
@@ -22,11 +23,7 @@ call plug#end()
 "-------------------------------------------------------------------------------
 " Tags 
 "-------------------------------------------------------------------------------
-set tags+=/home/un/Project/cs492-final-project/tags
-set tags+=/home/sgx2/Exclave/linux-sgx-2.1/tags
-set tags+=/home/sgx2/Exclave/linux-sgx-driver-2/tags
-set tags+=/home/jupark/decoupled_at_zsim/tags
-set tags+=/home/jupark/gem5-cxl/tags
+set tags+=/home/un/Project/astra-sim/tags
 
 nmap <silent> <F12> :TagbarToggle<cr>
 
@@ -97,9 +94,55 @@ if has("cscope")
 endif
 
 "-------------------------------------------------------------------------------
+" Promptline  settings 
+"-------------------------------------------------------------------------------
+
+let git_sha_slice = {
+      \'function_name': 'git_sha',
+      \'function_body': [
+        \'function git_sha {',
+        \'  local sha',
+        \'  sha=$(git rev-parse --short HEAD 2>/dev/null) || return 1',
+        \'  printf "%s" "$sha"',
+        \'}']}
+
+let g:airline_theme='jellybeans'
+" let g:lightline = {
+"       \ 'colorscheme': 'wombat',
+"       \ }
+" sections (a, b, c, x, y, z, warn) are optional
+let g:promptline_preset = {
+        \'a' : [ promptline#slices#conda_env() ],
+        \'b' : [ promptline#slices#user() ],
+        \'c' : [ promptline#slices#cwd() ],
+        \'y' : [ promptline#slices#vcs_branch(), git_sha_slice ],
+        \'warn' : [ promptline#slices#last_exit_code() ]}
+
+" available slices:
+"
+" promptline#slices#cwd() - current dir, truncated to 3 dirs. To configure: promptline#slices#cwd({ 'dir_limit': 4 })
+" promptline#slices#vcs_branch() - branch name only. By default, only git branch is enabled. Use promptline#slices#vcs_branch({ 'hg': 1, 'svn': 1, 'fossil': 1}) to enable check for svn, mercurial and fossil branches. Note that always checking if inside a branch slows down the prompt
+" promptline#slices#last_exit_code() - display exit code of last command if not zero
+" promptline#slices#jobs() - display number of shell jobs if more than zero
+" promptline#slices#battery() - display battery percentage (on OSX and linux) only if below 10%. Configure the threshold with promptline#slices#battery({ 'threshold': 25 })
+" promptline#slices#host() - current hostname.  To hide the hostname unless connected via SSH, use promptline#slices#host({ 'only_if_ssh': 1 })
+" promptline#slices#user()
+" promptline#slices#python_virtualenv() - display which virtual env is active (empty is none)
+" promptline#slices#git_status() - count of commits ahead/behind upstream, count of modified/added/unmerged files, symbol for clean branch and symbol for existing untraced files
+" promptline#slices#conda_env() - display which conda env is active (empty is none)
+"
+" any command can be used in a slice, for example to print the output of whoami in section 'b':
+"       \'b' : [ '$(whoami)'],
+"
+" more than one slice can be placed in a section, e.g. print both host and user in section 'a':
+"       \'a': [ promptline#slices#host(), promptline#slices#user() ],
+"
+" to disable powerline symbols
+" `let g:promptline_powerline_symbols = 0`
+
+"-------------------------------------------------------------------------------
 " vim settings 
 "-------------------------------------------------------------------------------
-let g:airline_theme='jellybeans'
 set hlsearch " 검색어 하이라이팅
 set nu " 줄번호
 set autoindent " 자동 들여쓰기
